@@ -22,17 +22,19 @@ new['Account_corrected'].replace('_','', regex=True,inplace=True)
 old['Account_corrected'] = old['Account_Zip'].str.lower()
 old['Account_corrected'].replace('_','', regex=True,inplace=True)
 
-by_cust = old.groupby(by=['Account_corrected']).agg({'Ship_ID1':'first',
-													'Account_Zip':'first',
-													'Sales':'sum',
-													'Old_Sales_Person':'first'}).reset_index()
+by_cust = old.groupby(by=['Account_corrected']).agg({
+		'Ship_ID1':'first',
+		'Account_Zip':'first',
+		'Sales':'sum',
+		'Old_Sales_Person':'first'}).reset_index()
 
-new_by_cust = new.groupby(by=['Account_corrected']).agg({'Ship_ID1':'first',
-														'Account_Zip':'first',
-														'Projections':'first',
-														'Old_Sales_Person':'first',
-														'New_Sales_Person':'first',
-														'Territory_ID':'first'}).reset_index()
+new_by_cust = new.groupby(by=['Account_corrected']).agg({
+		'Ship_ID1':'first',
+		'Account_Zip':'first',
+		'Projections':'first',
+		'Old_Sales_Person':'first',
+		'New_Sales_Person':'first',
+		'Territory_ID':'first'}).reset_index()
 
 print(by_cust.head())
 print('\n\n')
